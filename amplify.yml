@@ -1,0 +1,16 @@
+version: 1
+applications:
+  - appRoot: /
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - pip install -r requirements.txt  # 依存関係のインストール
+        build:
+          commands:
+            - python app_main.py  # アプリケーションの実行
+    backend:
+      phases:
+        build:
+          commands:
+            - python app_main.py  # アプリケーションの実行
