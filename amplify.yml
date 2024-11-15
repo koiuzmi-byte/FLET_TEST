@@ -9,8 +9,15 @@ applications:
         build:
           commands:
             - python app_main.py  # アプリケーションの実行
-    backend:
-      phases:
-        build:
-          commands:
-            - python app_main.py  # アプリケーションの実行
+      artifacts:
+        baseDirectory: /dist  # 出力ディレクトリ（適宜変更）
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*  # キャッシュの設定（Pythonには不要なら削除）
+    customHeaders:
+      - pattern: '**/*'
+        headers:
+          - key: 'Cache-Control'
+            value: 'max-age=0,no-cache,no-store,must-revalidate'
