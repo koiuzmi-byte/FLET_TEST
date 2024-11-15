@@ -8,14 +8,15 @@ applications:
             - pip install -r requirements.txt  # 依存関係のインストール
         build:
           commands:
-            - python app_main.py  # アプリケーションの実行
+            - python app_main.py build  # 変更点: 静的なビルド用コマンド (Flet での対応が必要)
       artifacts:
-        baseDirectory: /dist  # 出力ディレクトリ（適宜変更）
+        baseDirectory: /dist  # 静的ファイルの出力先
         files:
           - '**/*'
       cache:
         paths:
-          - node_modules/**/*  # キャッシュの設定（Pythonには不要なら削除）
+          - '**/node_modules/**/*'
+          - '**/.venv/**/*'
     customHeaders:
       - pattern: '**/*'
         headers:
